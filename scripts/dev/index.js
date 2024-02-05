@@ -20,7 +20,7 @@ async function start() {
   const server = await createServer(options)
   server.listen();
 
-  const executable = process.platform.includes('win') ? 'electron.cmd' : 'electron'
+  const executable = /^win/.test(process.platform) ? 'electron.cmd' : 'electron'
   const electronProcess = spawn(executable, [path.resolve(process.env.VIEW_ROOT, '../main/src/index.js')]);
 
   electronProcess.stdout.pipe(process.stdout)
