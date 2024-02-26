@@ -1,6 +1,5 @@
-const {app, BrowserWindow} = require('electron/main');
+const { app, BrowserWindow } = require('electron/main');
 const path = require('path');
-
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
@@ -9,7 +8,11 @@ app.whenReady().then(() => {
     }
   })
 
-  win.loadURL(`http://localhost:${process.env.DEV_PORT}`);
+  if (process.env.curEnv === 'production') {
+    win.loadURL('app://./index.html')
+  } else {
+    win.loadURL(`http://localhost:${process.env.DEV_PORT}`);
+  }
 })
 
 

@@ -6,8 +6,9 @@
   "scripts": {
     "preinstall:vue": "cross-env VIEW_ROOT='packages/view' node ./scripts/env/writeEnv.js",
     "install:vue": "pnpm dlx create-vue packages/view",
-    "dev": "cross-env CUR_ENV=development node ./scripts/index.js",
-    "build": "cross-env CUR_ENV=production"
+    "dev": "node ./scripts/dev.js",
+    "build": "node ./scripts/build",
+    "build:icon": "electron-icon-builder -i packages/main/resource/unrelease/icon.png"
   },
   "keywords": [
     "electron",
@@ -17,10 +18,11 @@
   "license": "MIT",
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
-    "cross-env": "^7.0.3",
     "dotenv": "^16.4.4",
     "electron": "^28.2.1",
+    "electron-builder": "^24.12.0",
     "electron-icon-builder": "^2.0.1",
+    "esbuild": "^0.20.1",
     "nodemon": "^3.0.3",
     "vite": "^5.0.12"
   }
