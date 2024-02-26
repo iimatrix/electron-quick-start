@@ -4,9 +4,8 @@
   "description": "electron quick start",
   "repository": "https://github.com/iimatrix/electron-quick-start",
   "scripts": {
-    "preinstall:vue": "cross-env VIEW_ROOT='packages/view' node ./scripts/env/writeEnv.js",
     "install:vue": "pnpm dlx create-vue packages/view",
-    "dev": "node ./scripts/dev.js",
+    "dev": "node ./scripts/dev/index",
     "build": "node ./scripts/build",
     "build:icon": "electron-icon-builder -i packages/main/resource/unrelease/icon.png"
   },

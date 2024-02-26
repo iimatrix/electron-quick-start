@@ -1,7 +1,13 @@
 const { app, BrowserWindow } = require('electron/main');
-const path = require('path');
+const {registerProtocol, handleProtocol} = require('@/utils/util')
+
+// registerProtocol();
+
 
 app.whenReady().then(() => {
+
+  // handleProtocol()
+  
   const win = new BrowserWindow({
     webPreferences: {
       // preload: path.resolve(process.env.VIEW_ROOT, 'preload.cjs')

@@ -31,6 +31,7 @@ class Builder {
         minify: true,
         outDir: this.bundlePath,
         emptyOutDir: true,
+        
       }
     })
   
@@ -51,6 +52,9 @@ class Builder {
       platform: 'node',
       sourcemap: false,
       external: ['electron'],
+      alias: {
+        '@': path.resolve(process.cwd(), 'packages/main/src')
+      }
     })
 
     const js = `${envStr}${os.EOL}${fs.readFileSync(outfile)}`;
