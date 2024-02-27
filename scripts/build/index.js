@@ -7,13 +7,17 @@ async function build() {
     .clearOutput()
     .buildRender();
   
-  await builder
+  try {
+    await builder
     .buildMain()
     .buildModule()
     .buildIcon()
     .buildInstaller();
-  
+  } catch(e) {
+    throw e
+  } finally {
     builder.clearIcon()
+  }
 }
 
 

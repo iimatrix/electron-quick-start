@@ -65,9 +65,19 @@ class Builder {
   buildIcon() {
     const iconPath = path.resolve(process.cwd(), process.env.iconPath)
     const executable = /^win/.test(process.platform) ? 'electron-icon-builder.cmd' : 'electron-icon-builder'
-    spawnSync(executable, ['-i', iconPath, '-o', '.']);
-    process.env.winIcon = path.resolve(process.cwd(), 'icons/win/icon.ico')
-    process.env.macIcon = path.resolve(process.cwd(), 'icons/mac/icon.icns')
+
+    try {
+      fs.accessSync(iconPath)
+      spawnSync(executable, ['-i', iconPath, '-o', '.']);
+      const winIconPath = path.resolve(process.cwd(), 'icons/win/icon.ico')
+      fs.accessSync(winIconPath);
+      process.env.winIcon = winIconPath
+      process.env.macIcon = path.resolve(process.cwd(), 'icons/mac/icon.icns')
+    } catch {
+      // 生成图标出错则清空图标文件夹
+      this.clearIcon()
+    }
+
     return this
   }
 
